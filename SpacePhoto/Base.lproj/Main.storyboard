@@ -29,7 +29,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="201"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C31-GT-zHF">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="201"/>
+                                                        <rect key="frame" x="0.0" y="10" width="375" height="191"/>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pn0-UX-FeN">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="201"/>
@@ -46,8 +46,8 @@
                                                     <constraint firstItem="Pn0-UX-FeN" firstAttribute="leading" secondItem="Ev2-3a-LNp" secondAttribute="leading" id="X0T-gM-XAf"/>
                                                     <constraint firstAttribute="trailing" secondItem="Pn0-UX-FeN" secondAttribute="trailing" id="btR-iu-U81"/>
                                                     <constraint firstAttribute="bottom" secondItem="C31-GT-zHF" secondAttribute="bottom" id="frv-gZ-0Hu"/>
+                                                    <constraint firstItem="C31-GT-zHF" firstAttribute="top" secondItem="Ev2-3a-LNp" secondAttribute="top" constant="10" id="gIm-sQ-j6d"/>
                                                     <constraint firstItem="Pn0-UX-FeN" firstAttribute="top" secondItem="Ev2-3a-LNp" secondAttribute="top" id="h4d-mH-Ykk"/>
-                                                    <constraint firstItem="C31-GT-zHF" firstAttribute="top" secondItem="Ev2-3a-LNp" secondAttribute="top" id="sGT-Qy-pJr"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ULZ-Xc-c5a" userLabel="Bottom View">
@@ -143,6 +143,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="uqg-Ai-K8J">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="667" id="JIt-RP-t9b"/>
+                                    <constraint firstAttribute="width" constant="375" id="uY9-Pj-BHg"/>
+                                </constraints>
+                            </imageView>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="bOl-pf-l2O">
                                 <rect key="frame" x="28" y="225" width="320" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="547088637.93723595">
@@ -151,6 +158,9 @@
                                 <date key="minimumDate" timeIntervalSinceReferenceDate="-175010400">
                                     <!--1995-06-16 10:00:00 +0000-->
                                 </date>
+                                <connections>
+                                    <action selector="datePickerChanged:" destination="PQu-bA-R4i" eventType="valueChanged" id="EJ5-OD-EQL"/>
+                                </connections>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show me the NASA Astronomy Picture of the Day for:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WCe-qS-j9V">
                                 <rect key="frame" x="87.5" y="127.5" width="200" height="100"/>
@@ -162,13 +172,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="prI-Jw-pR2">
-                                <rect key="frame" x="163" y="519" width="49" height="30"/>
-                                <state key="normal" title="Submit"/>
-                                <connections>
-                                    <action selector="submitButtonPressed:" destination="PQu-bA-R4i" eventType="touchUpInside" id="3G0-99-u6X"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NASA Astronomy Picture of the Day" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GUo-Q3-Mfo">
                                 <rect key="frame" x="16" y="32" width="343" height="88"/>
                                 <constraints>
@@ -179,28 +182,56 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="prI-Jw-pR2">
+                                <rect key="frame" x="155.5" y="515" width="65" height="38"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="submitButtonPressed:" destination="PQu-bA-R4i" eventType="touchUpInside" id="3G0-99-u6X"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WmE-Tc-iRg">
+                                <rect key="frame" x="166" y="210" width="42" height="30"/>
+                                <state key="normal" title="Today">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="todayButtonPressed:" destination="PQu-bA-R4i" eventType="touchUpInside" id="Aaz-xA-ckg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="prI-Jw-pR2" firstAttribute="centerX" secondItem="gKE-Gu-WEk" secondAttribute="centerX" id="86a-JK-EOL"/>
                             <constraint firstItem="GUo-Q3-Mfo" firstAttribute="centerY" secondItem="gKE-Gu-WEk" secondAttribute="centerY" constant="-257.5" id="Ddp-Yy-9yC"/>
+                            <constraint firstItem="uqg-Ai-K8J" firstAttribute="top" secondItem="gKE-Gu-WEk" secondAttribute="top" id="MR9-Ev-xDU"/>
                             <constraint firstItem="bOl-pf-l2O" firstAttribute="centerY" secondItem="gKE-Gu-WEk" secondAttribute="centerY" id="My7-JO-90Z"/>
                             <constraint firstItem="prI-Jw-pR2" firstAttribute="centerY" secondItem="gKE-Gu-WEk" secondAttribute="centerY" constant="200.5" id="WOL-E4-mPa"/>
+                            <constraint firstItem="WmE-Tc-iRg" firstAttribute="centerX" secondItem="gKE-Gu-WEk" secondAttribute="centerX" id="YSp-fg-Kgp"/>
+                            <constraint firstItem="uqg-Ai-K8J" firstAttribute="leading" secondItem="nhp-Fe-GYI" secondAttribute="leading" id="ZGy-1q-0E6"/>
                             <constraint firstItem="bOl-pf-l2O" firstAttribute="centerX" secondItem="gKE-Gu-WEk" secondAttribute="centerX" id="ZcD-PD-PSl"/>
+                            <constraint firstItem="uqg-Ai-K8J" firstAttribute="bottom" secondItem="nhp-Fe-GYI" secondAttribute="bottom" id="bis-DF-4CW"/>
                             <constraint firstItem="WCe-qS-j9V" firstAttribute="centerY" secondItem="gKE-Gu-WEk" secondAttribute="centerY" constant="-156" id="daE-97-oEW"/>
+                            <constraint firstItem="WmE-Tc-iRg" firstAttribute="centerY" secondItem="gKE-Gu-WEk" secondAttribute="centerY" constant="-108.5" id="eX4-uy-Za1"/>
                             <constraint firstItem="WCe-qS-j9V" firstAttribute="centerX" secondItem="gKE-Gu-WEk" secondAttribute="centerX" id="jYC-mz-JGw"/>
+                            <constraint firstItem="uqg-Ai-K8J" firstAttribute="trailing" secondItem="nhp-Fe-GYI" secondAttribute="trailing" id="lx2-gW-xAA"/>
                             <constraint firstItem="GUo-Q3-Mfo" firstAttribute="centerX" secondItem="gKE-Gu-WEk" secondAttribute="centerX" id="vaC-sF-bFC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nhp-Fe-GYI"/>
                     </view>
                     <connections>
+                        <outlet property="backgroundImage" destination="uqg-Ai-K8J" id="CHR-Ub-Qj7"/>
                         <outlet property="datePicker" destination="bOl-pf-l2O" id="pmA-CY-wDy"/>
+                        <outlet property="submitButton" destination="prI-Jw-pR2" id="Q4H-Uf-hEe"/>
+                        <outlet property="todayButton" destination="WmE-Tc-iRg" id="9ZX-wr-nvG"/>
                         <segue destination="LID-FE-Ulv" kind="show" identifier="showDate" id="RlU-2x-gVc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e5k-Hw-M7b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="135" y="134"/>
+            <point key="canvasLocation" x="133.59999999999999" y="133.5832083958021"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ts0-TL-E51">
@@ -221,4 +252,7 @@
             <point key="canvasLocation" x="1076" y="133.5832083958021"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="background" width="770" height="773"/>
+    </resources>
 </document>

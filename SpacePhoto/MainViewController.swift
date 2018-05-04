@@ -10,9 +10,45 @@ import UIKit
 
 class MainViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var todayButton: UIButton!
+    @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var backgroundImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        backgroundImage.alpha = 0.5
+        
+        updateTodayButton()
+    }
+    
+    func updateTodayButton() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let todaysDate = Date()
+        if dateFormatter.string(from: todaysDate) == dateFormatter.string(from: datePicker.date) {
+            UIView.animate(withDuration: 0.1) {
+                self.todayButton.setTitleColor(UIColor.darkGray, for: .normal)
+                self.todayButton.isHidden = true
+                self.todayButton.isEnabled = false
+            }
+        } else {
+            UIView.animate(withDuration: 0.1) {
+                self.todayButton.setTitleColor(UIColor.white, for: .normal)
+                self.todayButton.isHidden = false
+                self.todayButton.isEnabled = true
+            }
+        }
+    }
+    
+    @IBAction func datePickerChanged(_ sender: Any) {
+        updateTodayButton()
+    }
+    
+    @IBAction func todayButtonPressed(_ sender: Any) {
+        let todaysDate = Date()
+        datePicker.setDate(todaysDate, animated: true)
+        updateTodayButton()
     }
     
     @IBAction func submitButtonPressed(_ sender: Any) {

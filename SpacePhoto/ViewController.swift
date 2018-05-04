@@ -65,12 +65,7 @@ class ViewController: UIViewController {
         
         if photoInfo.mediaType == "video" {
             DispatchQueue.main.async {
-                self.photo.backgroundColor = UIColor.lightGray
-                let mediaLabel = UILabel(frame: self.photo.frame)
-                mediaLabel.textAlignment = .center
-                mediaLabel.numberOfLines = 0
-                mediaLabel.text = "\n\n\n\n\nTap here to view video!"
-                self.view.addSubview(mediaLabel)
+                self.photo.image = UIImage(named: "load_video")
                 
                 self.title = photoInfo.title ?? "Untitled"
                 self.descriptionLabel.text = photoInfo.description
