@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class ViewController: UIViewController {
     @IBOutlet weak var photo: UIImageView!
@@ -15,21 +16,48 @@ class ViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     
-    let photoInfoController = PhotoInfoController()
+    var photoInfoController: PhotoInfoController?
+    var url: URL?
+    
+    var dateToSearch: Date?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        photoInfoController = PhotoInfoController(dateToSearch!)
         
         self.title = "Loading..."
         self.descriptionLabel.text = "Please wait..."
         self.copyrightLabel.text = ""
         
-        photoInfoController.fetchPhotoInfo { (photoInfo) in
+        photoInfoController?.fetchPhotoInfo { (photoInfo) in
             if let photoInfo = photoInfo {
-                self.updateUI(with: photoInfo)
-            } else {
-                print("error")
+                if photoInfo.mediaType == "video" {
+                    let urlString = "https:\(photoInfo.url?.absoluteString ?? "")"
+                    self.url = URL(string: urlString)
+                } else {
+                    self.url = photoInfo.url
+                }
+                
+                if self.url == nil {
+                    DispatchQueue.main.async {
+                        self.title = "No media found"
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "MMM-dd-yyyy"
+                        let errorDate = dateFormatter.string(from: self.dateToSearch!)
+                        self.descriptionLabel.text = "No media found for \(errorDate)"
+                    }
+                } else {
+                    self.updateUI(with: photoInfo)
+                }
             }
+        }
+    }
+    
+    @IBAction func mediaTapped(_ sender: Any) {
+        if let url = self.url {
+            let safariViewController = SFSafariViewController(url: url)
+            present(safariViewController, animated: true, completion: nil)
         }
     }
     
@@ -37,9 +65,14 @@ class ViewController: UIViewController {
         
         if photoInfo.mediaType == "video" {
             DispatchQueue.main.async {
-                self.photo.backgroundColor = UIColor.orange
+                self.photo.backgroundColor = UIColor.lightGray
+                let mediaLabel = UILabel(frame: self.photo.frame)
+                mediaLabel.textAlignment = .center
+                mediaLabel.numberOfLines = 0
+                mediaLabel.text = "\n\n\n\n\nTap here to view video!"
+                self.view.addSubview(mediaLabel)
                 
-                self.title = photoInfo.title
+                self.title = photoInfo.title ?? "Untitled"
                 self.descriptionLabel.text = photoInfo.description
                 self.descriptionLabel.sizeToFit()
                 self.descriptionLabel.adjustsFontSizeToFitWidth = true
@@ -52,12 +85,12 @@ class ViewController: UIViewController {
                 }
             }
         } else {
-            URLSession.shared.dataTask(with: photoInfo.url) { (data, response, error) in
+            URLSession.shared.dataTask(with: photoInfo.url!) { (data, response, error) in
                 if let data = data, let image = UIImage(data: data) {
                     DispatchQueue.main.async {
                         self.photo.image = image
                         
-                        self.title = photoInfo.title
+                        self.title = photoInfo.title ?? "Untitled"
                         self.descriptionLabel.text = photoInfo.description
                         self.descriptionLabel.sizeToFit()
                         self.descriptionLabel.adjustsFontSizeToFitWidth = true
@@ -74,7 +107,7 @@ class ViewController: UIViewController {
         }
         
         DispatchQueue.main.async {
-            self.scrollView.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: /*UIScreen.main.bounds.size.height + */self.descriptionLabel.bounds.size.height)
+            self.scrollView.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: self.descriptionLabel.bounds.size.height)
         }
         
     }

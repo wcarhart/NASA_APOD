@@ -18,6 +18,7 @@
 		7226688D209BAEBC00A89746 /* PhotoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7226688C209BAEBC00A89746 /* PhotoInfo.swift */; };
 		7226688F209BAEFD00A89746 /* URL+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7226688E209BAEFD00A89746 /* URL+Helpers.swift */; };
 		72266891209BAF8A00A89746 /* PhotoInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72266890209BAF8A00A89746 /* PhotoInfoController.swift */; };
+		72FA6265209BEB0D0087648B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FA6264209BEB0D0087648B /* MainViewController.swift */; };
 		945D8C044776DBFDE09412CE /* Pods_SpacePhotoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA444D07A57C78DB2C47B48F /* Pods_SpacePhotoTests.framework */; };
 		A7C79CE6B9A04635B2BEC263 /* Pods_SpacePhoto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5CC6604E99073EA9386A996 /* Pods_SpacePhoto.framework */; };
 /* End PBXBuildFile section */
@@ -60,6 +61,7 @@
 		7226688C209BAEBC00A89746 /* PhotoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInfo.swift; sourceTree = "<group>"; };
 		7226688E209BAEFD00A89746 /* URL+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Helpers.swift"; sourceTree = "<group>"; };
 		72266890209BAF8A00A89746 /* PhotoInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInfoController.swift; sourceTree = "<group>"; };
+		72FA6264209BEB0D0087648B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		7623258EB35E099846EECF2C /* Pods-SpacePhotoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpacePhotoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpacePhotoTests/Pods-SpacePhotoTests.release.xcconfig"; sourceTree = "<group>"; };
 		7F12281DE77048337759EF38 /* Pods-SpacePhotoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpacePhotoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpacePhotoTests/Pods-SpacePhotoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9EE4BF33139192A1C1B6BDFD /* Pods_SpacePhotoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpacePhotoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +131,7 @@
 				7226688C209BAEBC00A89746 /* PhotoInfo.swift */,
 				7226688E209BAEFD00A89746 /* URL+Helpers.swift */,
 				72266890209BAF8A00A89746 /* PhotoInfoController.swift */,
+				72FA6264209BEB0D0087648B /* MainViewController.swift */,
 			);
 			path = SpacePhoto;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				7226688D209BAEBC00A89746 /* PhotoInfo.swift in Sources */,
 				72266891209BAF8A00A89746 /* PhotoInfoController.swift in Sources */,
 				7226688F209BAEFD00A89746 /* URL+Helpers.swift in Sources */,
+				72FA6265209BEB0D0087648B /* MainViewController.swift in Sources */,
 				72266861209BA65900A89746 /* ViewController.swift in Sources */,
 				7226685F209BA65900A89746 /* AppDelegate.swift in Sources */,
 			);
@@ -565,7 +569,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E255S56V67;
 				INFOPLIST_FILE = SpacePhoto/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = art.willcarh.SpacePhoto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -581,7 +588,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E255S56V67;
 				INFOPLIST_FILE = SpacePhoto/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = art.willcarh.SpacePhoto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -598,7 +608,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E255S56V67;
 				INFOPLIST_FILE = SpacePhotoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = art.willcarh.SpacePhotoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -616,7 +630,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E255S56V67;
 				INFOPLIST_FILE = SpacePhotoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = art.willcarh.SpacePhotoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -633,7 +651,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E255S56V67;
 				INFOPLIST_FILE = SpacePhotoUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = art.willcarh.SpacePhotoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -650,7 +672,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E255S56V67;
 				INFOPLIST_FILE = SpacePhotoUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = art.willcarh.SpacePhotoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

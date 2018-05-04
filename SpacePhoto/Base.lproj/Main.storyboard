@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dHy-Ez-drn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PQu-bA-R4i">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -28,15 +28,25 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ev2-3a-LNp" userLabel="Top View">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="201"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C31-GT-zHF">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C31-GT-zHF">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="201"/>
                                                     </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pn0-UX-FeN">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="201"/>
+                                                        <connections>
+                                                            <action selector="mediaTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hY4-bw-Xhe"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="C31-GT-zHF" firstAttribute="leading" secondItem="Ev2-3a-LNp" secondAttribute="leading" id="9fj-va-nzS"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Pn0-UX-FeN" secondAttribute="bottom" id="AK6-M1-EVR"/>
                                                     <constraint firstAttribute="trailing" secondItem="C31-GT-zHF" secondAttribute="trailing" id="Oso-7e-hEv"/>
+                                                    <constraint firstItem="Pn0-UX-FeN" firstAttribute="leading" secondItem="Ev2-3a-LNp" secondAttribute="leading" id="X0T-gM-XAf"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Pn0-UX-FeN" secondAttribute="trailing" id="btR-iu-U81"/>
                                                     <constraint firstAttribute="bottom" secondItem="C31-GT-zHF" secondAttribute="bottom" id="frv-gZ-0Hu"/>
+                                                    <constraint firstItem="Pn0-UX-FeN" firstAttribute="top" secondItem="Ev2-3a-LNp" secondAttribute="top" id="h4d-mH-Ykk"/>
                                                     <constraint firstItem="C31-GT-zHF" firstAttribute="top" secondItem="Ev2-3a-LNp" secondAttribute="top" id="sGT-Qy-pJr"/>
                                                 </constraints>
                                             </view>
@@ -105,7 +115,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Pho-eC-qYv"/>
+                    <navigationItem key="navigationItem" id="Pho-eC-qYv">
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="BWa-HT-02J">
+                            <connections>
+                                <segue destination="fFl-tX-JMr" kind="unwind" unwindAction="unwindToMainWithSegue:" id="FVg-oL-lik"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="contentView" destination="kgQ-5v-1I8" id="utW-Pk-FrG"/>
                         <outlet property="copyrightLabel" destination="VGE-MC-l06" id="ZK4-Xl-Tjw"/>
@@ -115,26 +131,94 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="fFl-tX-JMr" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1076" y="133.5832083958021"/>
+            <point key="canvasLocation" x="2015.2" y="133.5832083958021"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="CgS-L1-ziA">
+            <objects>
+                <viewController id="PQu-bA-R4i" customClass="MainViewController" customModule="SpacePhoto" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gKE-Gu-WEk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="bOl-pf-l2O">
+                                <rect key="frame" x="28" y="225" width="320" height="216"/>
+                                <date key="date" timeIntervalSinceReferenceDate="547088637.93723595">
+                                    <!--2018-05-04 01:03:57 +0000-->
+                                </date>
+                                <date key="minimumDate" timeIntervalSinceReferenceDate="-175010400">
+                                    <!--1995-06-16 10:00:00 +0000-->
+                                </date>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show me the NASA Astronomy Picture of the Day for:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WCe-qS-j9V">
+                                <rect key="frame" x="87.5" y="127.5" width="200" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="No0-rF-1du"/>
+                                    <constraint firstAttribute="width" constant="200" id="XyX-N6-EPQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="prI-Jw-pR2">
+                                <rect key="frame" x="163" y="519" width="49" height="30"/>
+                                <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="submitButtonPressed:" destination="PQu-bA-R4i" eventType="touchUpInside" id="3G0-99-u6X"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NASA Astronomy Picture of the Day" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GUo-Q3-Mfo">
+                                <rect key="frame" x="16" y="32" width="343" height="88"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="343" id="DVr-bW-8zq"/>
+                                    <constraint firstAttribute="height" constant="88" id="qdO-RC-TfU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="prI-Jw-pR2" firstAttribute="centerX" secondItem="gKE-Gu-WEk" secondAttribute="centerX" id="86a-JK-EOL"/>
+                            <constraint firstItem="GUo-Q3-Mfo" firstAttribute="centerY" secondItem="gKE-Gu-WEk" secondAttribute="centerY" constant="-257.5" id="Ddp-Yy-9yC"/>
+                            <constraint firstItem="bOl-pf-l2O" firstAttribute="centerY" secondItem="gKE-Gu-WEk" secondAttribute="centerY" id="My7-JO-90Z"/>
+                            <constraint firstItem="prI-Jw-pR2" firstAttribute="centerY" secondItem="gKE-Gu-WEk" secondAttribute="centerY" constant="200.5" id="WOL-E4-mPa"/>
+                            <constraint firstItem="bOl-pf-l2O" firstAttribute="centerX" secondItem="gKE-Gu-WEk" secondAttribute="centerX" id="ZcD-PD-PSl"/>
+                            <constraint firstItem="WCe-qS-j9V" firstAttribute="centerY" secondItem="gKE-Gu-WEk" secondAttribute="centerY" constant="-156" id="daE-97-oEW"/>
+                            <constraint firstItem="WCe-qS-j9V" firstAttribute="centerX" secondItem="gKE-Gu-WEk" secondAttribute="centerX" id="jYC-mz-JGw"/>
+                            <constraint firstItem="GUo-Q3-Mfo" firstAttribute="centerX" secondItem="gKE-Gu-WEk" secondAttribute="centerX" id="vaC-sF-bFC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="nhp-Fe-GYI"/>
+                    </view>
+                    <connections>
+                        <outlet property="datePicker" destination="bOl-pf-l2O" id="pmA-CY-wDy"/>
+                        <segue destination="LID-FE-Ulv" kind="show" identifier="showDate" id="RlU-2x-gVc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e5k-Hw-M7b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="135" y="134"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="SKX-Uq-e0w">
+        <scene sceneID="Ts0-TL-E51">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dHy-Ez-drn" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FE6-3a-On2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LID-FE-Ulv" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="H6a-Ql-EQE">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="oT5-bh-o10">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="fG7-QU-HXc"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="YiN-VX-X5M"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vtf-tS-625" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="146" y="134"/>
+            <point key="canvasLocation" x="1076" y="133.5832083958021"/>
         </scene>
     </scenes>
 </document>

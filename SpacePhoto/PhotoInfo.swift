@@ -9,18 +9,17 @@
 import Foundation
 
 struct PhotoInfo: Codable {
-    var title: String
-    var description: String
-    var url: URL
+    var title: String?
+    var description: String?
+    var url: URL?
     var copyright: String?
-    var mediaType: String
+    var mediaType: String?
     
-    init(title: String, description: String, url: URL, copyright: String?, mediaType: String) {
+    init(title: String?, description: String?, url: URL?, copyright: String?, mediaType: String?) {
         self.title = title
         self.description = description
         self.url = url
         self.mediaType = mediaType
-        guard let copyright = copyright else { self.copyright = nil; return }
         self.copyright = copyright
     }
 }
